@@ -25,6 +25,61 @@ We have language bindings in Shell, Ruby, and Python! You can view code examples
 
 This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
+# Create Leads
+``` javascript
+Body:
+{
+    "result": {
+        "leads": [{
+            "customer": {
+                "first_name": "Ben",
+                "last_name": "Blah",
+                "email": "ben@sail.com.au",
+                "phone": "0412312312",
+                "date_of_birth": "2017-06-30",
+                "address": {
+                    "street_number": 2,
+                    "street": "Sprint St",
+                    "street_type": "Street",
+                    "suburb": "Bondi Junction",
+                    "postcode": 2022,
+                    "state": "NSW",
+                    "country": "Australia",
+                }
+                "credit_score": "500"
+                "defaults": "1",
+                "drivers_license_number": 12312312,
+                "drivers_license_state": "NSW",
+            }
+            "company": {
+                "defaults": 1,
+                "months_in_business": 24,
+                "accounting_software": "Xero",
+                "business_description": "Restaurant"
+                "industry": "Customer Service"
+                "average_monthly_turnover": 50000,
+                "address": {
+                    "street_number": 2,
+                    "street": "Sprint St",
+                    "street_type": "Street",
+                    "suburb": "Bondi Junction",
+                    "postal_code": 2022,
+                    "state": "NSW",
+                    "country": "Australia",
+                }
+                "website": "www.examplewebsite.com.au",
+                "number_of_employees": 27,
+            }
+            "loan": {
+                "notes": "Example note",
+            }
+        }],
+    }
+}
+```
+Create a new lead [POST]
+
+
 # Authentication
 
 > To authorize, use this code:
