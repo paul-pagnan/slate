@@ -1,10 +1,7 @@
 ---
 title: API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
+language_tabs:
   - javascript
 
 toc_footers:
@@ -19,11 +16,7 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Welcome to the Lumi API. You can use this API to submit and retrieve leads as a broker/partner.
 
 # Authentication
 
@@ -55,38 +48,22 @@ let api = kittn.authorize('meowmeowmeow');
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+To use the API you'll need an access token, which can be retrieved by authenticating with your partner credentials. This auth key will be
+your ticket to our endpoints.
+Endpoints expect an Authorization header with each request, with the contents being your auth key.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: lumiauthkey`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>lumiauthkey</code> with your personal API key.
 </aside>
 
-# Kittens
+# Leads
 
-## Get All Kittens
+## Get All Leads
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+### HTTP Request
+`GET http://api.sail.com.au/v1/leads`
 
 ```javascript
 const kittn = require('kittn');
