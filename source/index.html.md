@@ -18,61 +18,6 @@ search: true
 
 Welcome to the Lumi API. You can use this API to submit and retrieve leads as a broker/partner.
 
-# Create Leads
-``` javascript
-Body:
-{
-    "result": {
-        "leads": [{
-            "customer": {
-                "first_name": "Ben",
-                "last_name": "Blah",
-                "email": "ben@sail.com.au",
-                "phone": "0412312312",
-                "date_of_birth": "2017-06-30",
-                "address": {
-                    "street_number": 2,
-                    "street": "Sprint St",
-                    "street_type": "Street",
-                    "suburb": "Bondi Junction",
-                    "postcode": 2022,
-                    "state": "NSW",
-                    "country": "Australia",
-                }
-                "credit_score": "500"
-                "defaults": "1",
-                "drivers_license_number": 12312312,
-                "drivers_license_state": "NSW",
-            }
-            "company": {
-                "defaults": 1,
-                "months_in_business": 24,
-                "accounting_software": "Xero",
-                "business_description": "Restaurant"
-                "industry": "Customer Service"
-                "average_monthly_turnover": 50000,
-                "address": {
-                    "street_number": 2,
-                    "street": "Sprint St",
-                    "street_type": "Street",
-                    "suburb": "Bondi Junction",
-                    "postal_code": 2022,
-                    "state": "NSW",
-                    "country": "Australia",
-                }
-                "website": "www.examplewebsite.com.au",
-                "number_of_employees": 27,
-            }
-            "loan": {
-                "notes": "Example note",
-            }
-        }],
-    }
-}
-```
-Create a new lead [POST]
-
-
 # Authentication
 
 To use the API you'll need an access token, which can be retrieved by authenticating with your partner credentials. This auth key will be
@@ -195,107 +140,172 @@ date_to | DateISO | Filter leads to the entered date. | true
 Remember to include your Authorization header!
 </aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
+# Create Lead
+## Request (application/JSON)
+``` json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "customer": {
+        "first_name": "Ben",
+        "last_name": "Blah",
+        "email": "ben@sail.com.au",
+        "phone": "0412312312",
+        "date_of_birth": "2017-06-30",
+        "address": {
+            "street_number": 2,
+            "street": "Sprint St",
+            "street_type": "Street",
+            "suburb": "Bondi Junction",
+            "postcode": 2022,
+            "state": "NSW",
+            "country": "Australia",
+        },
+        "credit_score": 500,
+        "defaults": "1",
+        "drivers_license_number": 12312312,
+        "drivers_license_state": "NSW",
+    },
+    "company": {
+        "name": "Bens Burgers",
+        "defaults": 1,
+        "months_in_business": 24,
+        "accounting_software": "Xero",
+        "business_description": "Restaurant",
+        "industry": "Customer Service",
+        "average_monthly_turnover": 50000,
+        "abn": 115213748,
+        "address": {
+            "street_number": 2,
+            "street": "Sprint St",
+            "street_type": "Street",
+            "suburb": "Bondi Junction",
+            "postal_code": 2022,
+            "state": "NSW",
+            "country": "Australia",
+        },
+        "website": "www.examplewebsite.com.au",
+        "number_of_employees": 27,
+    },
+    "loan": {
+        "notes": "Example note",
+        "requested_amount": 15000,
+        "installments": 52
+    }
+}
+```
+Create a new lead [POST]
+### Allowed Loan Reasons:
+`1. hiring`
+
+`2. inventory`
+
+`3. debtConsolidation`
+
+`4. marketing`
+
+`5. wages`
+
+`6. equipmentPurchasing`
+
+`7. expansion`
+
+`8. workingCapital`
+
+`9. other`
+
+### Allowed License States:
+`1. ACT`
+
+`2. NSW`
+
+`3. NT`
+
+`4. QLD`
+
+`5. SA`
+
+`6. TAS`
+
+`7. VIC`
+
+`8. WA`
+
+## Query Properties
+### Required Properties
+
+```
+{
+    "customer": {
+        "first_name": String,
+        "last_name": String,
+        "email": String,
+        "phone": String,
+        "date_of_birth": ISODate,
+        "address": {
+            "street_number": Number,
+            "street": String,
+            "street_type": String,
+            "suburb": String,
+            "postcode": Number,
+            "state": String,
+            "country": String,
+        },
+        "credit_score": Number,
+        "defaults": Number,
+        "drivers_license_number": Number,
+        "drivers_license_state": String,
+    },
+    "company": {
+        "name": String,
+        "defaults": String,
+        "months_in_business": Number,
+        "accounting_software": String,
+        "business_description": String,
+        "industry": String,
+        "average_monthly_turnover": Number,
+        "abn": Number,
+        "address": {
+            "street_number": Number,
+            "street": String,
+            "street_type": String,
+            "suburb": String,
+            "postal_code": Number,
+            "state": String,
+            "country": String,
+        },
+        "website": String,
+        "number_of_employees": Number,
+    },
+    "loan": {
+        "notes": String,
+        "requested_amount": Number,
+        "installments" : Number,
+    }
 }
 ```
 
-This endpoint retrieves a specific kitten.
+Parameter | Type
+--------- | ----
+customer.first_name | String
+customer.email | String
+customer.phone | Number
+company.name | String
+company.abn | Number
+loan.requested_amount | Number
+loan.installments | Number
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
-### HTTP Request
+### Skip Mandatories
+`customer.phone`
 
-`GET http://example.com/kittens/<ID>`
+`company.name`
 
-### URL Parameters
+`company.abn`
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+`loan.requested_amount`
 
-## Delete a Specific Kitten
+`loan.installments`
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+<aside class="notice">
+    These properties can be skipped if enforce_mandatories=false
+</aside>
