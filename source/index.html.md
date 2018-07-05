@@ -143,6 +143,9 @@ Remember to include your Authorization header!
 
 # Create Lead
 ## Request (application/JSON)
+
+> Example request
+
 ``` json
 {
     "customer": {
@@ -193,7 +196,21 @@ Remember to include your Authorization header!
     }
 }
 ```
+
+> The created lead id is returned is returned on success
+
+```json
+[
+    {
+        "id": "58f554ea2aaf6f0011dffabd"
+    }
+]
+```
+
 Create a new lead [POST]
+
+### HTTP Request
+http://api.sail.com.au/v1/leads
 ### Allowed Loan Reasons:
 `1. hiring`
 
@@ -230,18 +247,10 @@ Create a new lead [POST]
 
 `8. WA`
 
-## Response 200
-```json
-[
-    {
-        "id": "58f554ea2aaf6f0011dffabd"
-    }
-]
-```
-The created lead id is returned on success
-
 ## Query Properties
 ### Required Properties
+
+> Schema
 
 ```
 {
@@ -347,12 +356,8 @@ loan.installments | Number
 
 `POST http://api.sail.com.au/lead/{lead_id}/documents`
 
-## Parameters
-Parameter | Type 
---------- | ---- 
-lead_id | String
+> The following response is returned
 
-## Response 200
 ```json
 {
     "success": true,
@@ -363,3 +368,88 @@ lead_id | String
     }
 }
 ```
+
+## Parameters
+Parameter | Type 
+--------- | ---- 
+lead_id | String
+
+# Lead Details
+> Example using the Fetch API
+
+```javascript
+const leads = await fetch('http://api.sail.com.au/v1/leads?id=5b3c41aa9e8dec24a3117b3c', {
+    method = 'GET',
+    headers: {
+        'Authorization': 'lumiauthkey'
+    }
+});
+```
+
+> The above command returns JSON structured like so:
+
+```json
+{
+    "success": true,
+    "result": {
+        "leads": [
+            {
+                "notes": [],
+                "events": [],
+                "id": "5b3c41aa9e8dec24a3117b3c",
+                "status": "WAITING_FOR_CALL",
+                "stakeholder": {
+                    "first_name": "John",
+                    "last_name": "Smith",
+                    "email": "john.smith@smithfamily.com",
+                    "phone": "0401-234-567",
+                    "birth_date": "1994-02-14",
+                    "address": {
+                        "street": "1 George Street, Sydney NSW, Australia",
+                        "country": "AUS"
+                    },
+                    "drivers_license_number": "123231123123",
+                    "drivers_license_state": "NSW"
+                },
+                "company": {
+                    "name": "FLYING SOLO PROPERTIES",
+                    "abn": "116213748",
+                    "industry": "retail",
+                    "address": {
+                        "street": "106-108 George Street, The Rocks NSW, Australia"
+                    },
+                    "average_monthly_turnover": 1234678
+                },
+                "loan": {
+                    "reason_for_loan": [],
+                    "requested_amount": 8000,
+                    "installments": 52,
+                    "notes": "other",
+                    "amount": 0
+                },
+                "created_at": "2018-07-04T13:40:26+10:00",
+                "updated_at": "2018-07-04T13:41:56+10:00",
+                "loan_id": "5b3c41a59e8dec24a3117b23",
+                "application_id": "5b3c41a5ab405559544a573e",
+                "lead_application_status": "SUBMITTED"
+            }
+        ],
+        "count": 1
+    }
+}
+```
+
+Retrieves all the details for a specific lead.
+
+### HTTP Request
+`GET http://api.sail.com.au/v1/leads`
+
+### Query Parameters
+
+Parameter | Type | Description | Optional
+--------- | ---- | ----------- | --------
+id | String | The ID of the lead you are retrieving. | false
+
+<aside class="success">
+Remember to use the lead id in the request and not an id referenced to another property!
+</aside>
