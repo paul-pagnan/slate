@@ -1,12 +1,8 @@
 ---
-title: API Reference
+title: Sail Leads API
 
 language_tabs:
   - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -16,23 +12,16 @@ search: true
 
 # Introduction
 
-Welcome to the Lumi API. You can use this API to submit and retrieve leads as a broker/partner.
+Welcome to the Lumi API. You can use this API to submit, retrieve and update leads as a broker/partner.
 
 # Authentication
 
-To use the API you'll need an access token, which can be retrieved by authenticating with your partner credentials. This auth key will be
-your ticket to our endpoints.
-Endpoints expect an Authorization header with each request, with the contents being your auth key.
+To use the API you'll need an access token, which can be retrieved by authenticating with your partner credentials. You will need to use
+your broker credentials in the request header via BASIC Authentication.
 
-`Authorization: lumiauthkey`
+# Retrieving Leads
 
-<aside class="notice">
-You must replace <code>lumiauthkey</code> with your personal API key.
-</aside>
-
-# Leads
-
-## Get All Leads
+Use this endpoint to retrieve all your leads. You can provide extra parameters in the request to filter the response.
 
 > Example request to the API using Fetch.
 
@@ -44,7 +33,20 @@ const leads = await fetch('http://api.sail.com.au/v1/leads', {
     }
 });
 ```
-> The above command returns JSON structured like this:
+
+> Filter/Search leads by utilising the listed parameters. The following snippet will return leads which are
+under the **Waiting For Calls** status.
+
+```javascript
+const leads = await fetch('http://api.sail.com.au/v1/leads?status=WAITING_FOR_CALL', {
+    method = 'GET',
+    headers: {
+        'Authorization': 'lumiauthkey'
+    }
+});
+```
+
+> The above commands return JSON structured like this:
 
 ```json
 {
@@ -100,8 +102,7 @@ const leads = await fetch('http://api.sail.com.au/v1/leads', {
 ### HTTP Request
 `GET http://api.sail.com.au/v1/leads`
 
-
-### Query Parameters
+### URL Parameters
 
 Parameter | Type | Description | Optional
 --------- | ---- | ----------- | --------
