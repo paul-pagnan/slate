@@ -229,6 +229,16 @@ Create a new lead [POST]
 
 `8. WA`
 
+## Response 200
+```json
+[
+    {
+        "id": "58f554ea2aaf6f0011dffabd"
+    }
+]
+```
+The created lead id is returned on success
+
 ## Query Properties
 ### Required Properties
 
@@ -309,3 +319,46 @@ loan.installments | Number
 <aside class="notice">
     These properties can be skipped if enforce_mandatories=false
 </aside>
+
+# Upload lead document
+### Request
+> Headers
+
+```json
+    "Constent Type: multipart/form-data;boundary=----WebKitFormBoundary8M3sSU13ul5lXSJm"
+    "Authentication: Basic authentication with base64(user:pass) in the header [BASIC AUTHENTICATION]"
+```
+
+> Body
+
+```
+    ------WebKitFormBoundary8M3sSU13ul5lXSJm
+    Content-Disposition: form-data; name="document"; filename="image.jpg"
+    Content-Type: image/jpeg
+    Content-Transfer-Encoding: base64
+    /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0a
+    HBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIy
+    MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIA
+    AhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEB
+    AAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AL+AD//Z
+    ------WebKitFormBoundary8M3sSU13ul5lXSJm--
+```
+
+`POST http://api.sail.com.au/lead/{lead_id}/documents`
+
+## Parameters
+Parameter | Type 
+--------- | ---- 
+lead_id | String
+
+## Response 200
+```json
+{
+    "success": true,
+    "file": {
+        "id": "59945662f5b3f9b41076cc07",
+        "filename": "image.jpg",
+        "size": 250,
+    }
+}
+```
