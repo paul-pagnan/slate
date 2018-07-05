@@ -1,5 +1,5 @@
 ---
-title: Sail Leads API
+title: lumi Leads API
 
 language_tabs:
   - javascript
@@ -26,7 +26,7 @@ Use this endpoint to retrieve all your leads. You can provide extra parameters i
 > Example request to the API using Fetch.
 
 ```javascript
-const leads = await fetch('http://api.sail.com.au/v1/leads', {
+const leads = await fetch('http://api.lumi.com.au/v1/leads', {
     method = 'GET',
     headers: {
         'Authorization': 'lumiauthkey'
@@ -38,7 +38,7 @@ const leads = await fetch('http://api.sail.com.au/v1/leads', {
 under the **Waiting For Calls** status.
 
 ```javascript
-const leads = await fetch('http://api.sail.com.au/v1/leads?status=WAITING_FOR_CALL', {
+const leads = await fetch('http://api.lumi.com.au/v1/leads?status=WAITING_FOR_CALL', {
     method = 'GET',
     headers: {
         'Authorization': 'lumiauthkey'
@@ -100,7 +100,7 @@ const leads = await fetch('http://api.sail.com.au/v1/leads?status=WAITING_FOR_CA
 ```
 
 ### HTTP Request
-`GET http://api.sail.com.au/v1/leads`
+`GET http://api.lumi.com.au/v1/leads`
 
 ### URL Parameters
 
@@ -142,7 +142,6 @@ Remember to include your Authorization header!
 </aside>
 
 # Create Lead
-## Request (application/JSON)
 
 > Example request
 
@@ -151,7 +150,7 @@ Remember to include your Authorization header!
     "customer": {
         "first_name": "Ben",
         "last_name": "Blah",
-        "email": "ben@sail.com.au",
+        "email": "ben@lumi.com.au",
         "phone": "0412312312",
         "date_of_birth": "2017-06-30",
         "address": {
@@ -207,10 +206,10 @@ Remember to include your Authorization header!
 ]
 ```
 
-Create a new lead [POST]
 
 ### HTTP Request
-http://api.sail.com.au/v1/leads
+`POST http://api.lumi.com.au/v1/leads`
+
 ### Allowed Loan Reasons:
 `1. hiring`
 
@@ -354,7 +353,7 @@ loan.installments | Number
     ------WebKitFormBoundary8M3sSU13ul5lXSJm--
 ```
 
-`POST http://api.sail.com.au/lead/{lead_id}/documents`
+`POST http://api.lumi.com.au/lead/{lead_id}/documents`
 
 > The following response is returned
 
@@ -378,7 +377,7 @@ lead_id | String
 > Example using the Fetch API
 
 ```javascript
-const leads = await fetch('http://api.sail.com.au/v1/leads?id=5b3c41aa9e8dec24a3117b3c', {
+const leads = await fetch('http://api.lumi.com.au/v1/leads?id=5b3c41aa9e8dec24a3117b3c', {
     method = 'GET',
     headers: {
         'Authorization': 'lumiauthkey'
@@ -442,7 +441,7 @@ const leads = await fetch('http://api.sail.com.au/v1/leads?id=5b3c41aa9e8dec24a3
 Retrieves all the details for a specific lead.
 
 ### HTTP Request
-`GET http://api.sail.com.au/v1/leads`
+`GET http://api.lumi.com.au/v1/leads`
 
 ### Query Parameters
 
