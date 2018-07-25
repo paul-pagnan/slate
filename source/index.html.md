@@ -63,7 +63,7 @@ const leads = await fetch('http://api.lumi.com.au/v1/leads?status=WAITING_FOR_CA
                     "last_name": "Smith",
                     "email": "john.smith@smithfamily.com",
                     "phone": "0401-234-567",
-                    "birth_date": "1994-02-14",
+                    "birth_date": Date("1994-02-14"),
                     "address": {
                         "street": "1 George Street, Sydney NSW, Australia",
                         "country": "AUS"
@@ -402,7 +402,7 @@ const leads = await fetch('http://api.lumi.com.au/v1/leads?id=5b3c41aa9e8dec24a3
                     "last_name": "Smith",
                     "email": "john.smith@smithfamily.com",
                     "phone": "0401-234-567",
-                    "birth_date": "1994-02-14",
+                    "birth_date": Date("1994-02-14"),
                     "address": {
                         "street": "1 George Street, Sydney NSW, Australia",
                         "country": "AUS"
